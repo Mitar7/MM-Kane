@@ -1,0 +1,5 @@
+- animacija pucanja
+- animacija patke
+
+- GAME OVER window
+- Highscore Management
