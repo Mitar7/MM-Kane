@@ -7,7 +7,7 @@ class Duck:
         self.game = game
         self.x = x
         self.y = y
-        self.duck_vel = 4
+        self.vel = 4
         self.dead = False
         # Slika patke i pravougao
         self.duck = pygame.image.load('images/Duck/player1-sprite.png').convert_alpha()
@@ -59,7 +59,7 @@ class Duck:
 
     def move(self):
         if not self.dead:
-            self.x += self.duck_vel
+            self.x += self.vel
 
     def left_screen(self):
         if self.x >= self.game.DISPLAY_W:

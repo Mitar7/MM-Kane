@@ -1,6 +1,4 @@
 import pygame
-import spritesheet
-from . Arrow import Arrow
 
 
 class Player:
