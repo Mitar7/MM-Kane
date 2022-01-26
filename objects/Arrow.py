@@ -39,4 +39,10 @@ class Arrow(pygame.sprite.Sprite):
             self.game.score += 5
             return True  # vraca True kako bi if petlja prosla
 
+    # kretanje strele
+    def move(self):
+        self.x = self.x + self.dx
+        self.y = self.y + self.dy
+        self.arrow_rect.x = int(self.x)
+        self.arrow_rect.y = int(self.y)
 

@@ -137,10 +137,7 @@ class Game:
                         self.ducks.pop(self.ducks.index(duck))  # pogodjena patka nestaje
                         self.ammo.pop(self.ammo.index(arrow))   # strela kojom smo pogodili nestaje
                 if self.DISPLAY_W > arrow.x > 0 and arrow.y > 0:
-                    arrow.x = arrow.x + arrow.dx
-                    arrow.y = arrow.y + arrow.dy
-                    arrow.arrow_rect.x = int(arrow.x)
-                    arrow.arrow_rect.y = int(arrow.y)
+                    arrow.move()
                 else:
                     self.ammo.pop(self.ammo.index(arrow))
 
@@ -187,7 +184,7 @@ class Game:
         self.display.blit(text_surface, text_rect)
 
     def display_hud(self):
-        # self.gametime = pygame.time.get_ticks()  # vreme u igri
+        self.gametime = pygame.time.get_ticks()  # vreme u igri
         self.display.blit(self.hud, (320, 0))
         self.draw_text(f'Score: {self.score}', 22, self.DISPLAY_W - 75, 25, self.WHITE)
         self.draw_text('Arrows left: ', 25, self.DISPLAY_W - 300, 25, self.WHITE)
@@ -195,10 +192,10 @@ class Game:
             self.display.blit(self.arrow_img, (self.DISPLAY_W - 145 - 10 * x, 5))
         self.draw_text(f'Birds passed: {self.ducks_passed}', 25, self.DISPLAY_W - 500, 25, self.WHITE)
         self.draw_text(f'Birds killed: {self.ducks_died}', 25, self.DISPLAY_W - 725, 25, self.WHITE)
-        # if self.gametime < 60000:
-        #     self.draw_text(f'Time: {round(self.gametime / 1000,2)}s', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
-        # else:
-        #     self.draw_text(f'Time: {round((self.gametime / 1000) / 60, 2)} min', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
+        if self.gametime < 60000:
+            self.draw_text(f'Time: {round(self.gametime / 1000,2)}s', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
+        else:
+            self.draw_text(f'Time: {round((self.gametime / 1000) / 60, 2)} min', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
         self.display.blit(self.crosshair, (self.posx - 15, self.posy - 15))
 
     def game_over(self):
