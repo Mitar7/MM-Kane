@@ -2,9 +2,8 @@ import pygame
 import math
 
 
-class Arrow(pygame.sprite.Sprite):
+class Arrow:
     def __init__(self, game, x, y):
-        super().__init__()
         self.game = game
 
         # Kordinate i brzina strele
