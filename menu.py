@@ -107,7 +107,6 @@ class HighscoreMenu(Menu):
         for line in text:
             date, score = line.split('-')
             highscore[date] = int(score)
-        # highscore = {k: v for k, v in sorted(highscore.items(), key=lambda item: item[1], reverse=True)}
         res = dict(sorted(highscore.items(), key=itemgetter(1), reverse=True)[:15])  # prikazuje TOP 15 rezultata
 
         while self.run_display:

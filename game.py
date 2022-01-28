@@ -184,7 +184,7 @@ class Game:
         self.display.blit(text_surface, text_rect)
 
     def display_hud(self):
-        self.gametime = pygame.time.get_ticks()  # vreme u igri
+        # self.gametime = pygame.time.get_ticks()  # vreme u igri
         self.display.blit(self.hud, (320, 0))
         self.draw_text(f'Score: {self.score}', 22, self.DISPLAY_W - 75, 25, self.WHITE)
         self.draw_text('Arrows left: ', 25, self.DISPLAY_W - 300, 25, self.WHITE)
@@ -192,11 +192,8 @@ class Game:
             self.display.blit(self.arrow_img, (self.DISPLAY_W - 145 - 10 * x, 5))
         self.draw_text(f'Birds passed: {self.ducks_passed}', 25, self.DISPLAY_W - 500, 25, self.WHITE)
         self.draw_text(f'Birds killed: {self.ducks_died}', 25, self.DISPLAY_W - 725, 25, self.WHITE)
-        if self.gametime < 60000:
-            self.draw_text(f'Time: {round(self.gametime / 1000,2)}s', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
-        else:
-            self.draw_text(f'Time: {round((self.gametime / 1000) / 60, 2)} min', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
+        # if self.gametime < 60000:
+        #     self.draw_text(f'Time: {round(self.gametime / 1000,2)}s', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
+        # else:
+        #     self.draw_text(f'Time: {round((self.gametime / 1000) / 60, 2)} min', 25, self.DISPLAY_W - 100, self.DISPLAY_H - 30, self.WHITE)
         self.display.blit(self.crosshair, (self.posx - 15, self.posy - 15))
-
-    def game_over(self):
-        self.draw_text('Game over', 48, self.DISPLAY_W / 2, self.DISPLAY_H / 2 + 40, self.BLACK)
