@@ -85,6 +85,24 @@ class Game:
             self.player.blit(self.display)
             self.player.control()
 
+            for arrow in self.ammo:
+                for duck in self.ducks:
+                    if arrow.collided(duck.duck_rect):
+                        duck.bird_death.play()
+                        duck.dead = True
+                        for _ in range(duck.dead_animation_steps - 1):
+                            duck.update_dead()
+                            duck.blit_dead(self.display)
+                            duck.dead_frame += 1
+                        if self.player.arrows < 8:
+                            self.player.arrows += 1
+                        self.ducks.pop(self.ducks.index(duck))  # pogodjena patka nestaje
+                        self.ammo.pop(self.ammo.index(arrow))   # strela kojom smo pogodili nestaje
+                if self.DISPLAY_W > arrow.x > 0 and arrow.y > 0:
+                    arrow.move()
+                else:
+                    self.ammo.pop(self.ammo.index(arrow))
+
             # update informacija patke
             for duck in self.ducks:
                 duck.blit(self.display)
@@ -122,24 +140,6 @@ class Game:
                     self.last_spawn = self.spawntime
                     duck = Duck(-150, random.randrange(120, self.player.y - 30), self)
                     self.ducks.append(duck)
-
-            for arrow in self.ammo:
-                for duck in self.ducks:
-                    if arrow.collided(duck.duck_rect):
-                        duck.bird_death.play()
-                        for _ in range(duck.dead_animation_steps - 1):
-                            duck.update_dead()
-                            duck.blit_dead(self.display)
-                            duck.dead_frame += 1
-                        duck.dead = True
-                        if self.player.arrows < 8:
-                            self.player.arrows += 1
-                        self.ducks.pop(self.ducks.index(duck))  # pogodjena patka nestaje
-                        self.ammo.pop(self.ammo.index(arrow))   # strela kojom smo pogodili nestaje
-                if self.DISPLAY_W > arrow.x > 0 and arrow.y > 0:
-                    arrow.move()
-                else:
-                    self.ammo.pop(self.ammo.index(arrow))
 
             pygame.display.update()
             self.reset_keys()  # Pritisnuti tasteri se resetuju na kraju loopa

@@ -73,5 +73,6 @@ class Duck:
             display.blit(self.animation_list[self.frame], self.duck_rect)
 
     def blit_dead(self, display):
-        self.duck_dead_rect = self.dead_animation_list[self.dead_frame].get_rect(center=(self.x, self.y))
-        display.blit(self.dead_animation_list[self.dead_frame], self.duck_dead_rect)
+        if self.dead:
+            self.duck_dead_rect = self.dead_animation_list[self.dead_frame].get_rect(center=(self.x, self.y))
+            display.blit(self.dead_animation_list[self.dead_frame], self.duck_dead_rect)
