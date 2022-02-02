@@ -118,27 +118,27 @@ class Game:
                 if self.spawntime - self.last_spawn > 1000:
                     print('Prosala su 3 minuta igra se ubrzava!')
                     self.last_spawn = self.spawntime
-                    duck = Duck(-150, random.randrange(120, self.player.y - 30), self)
+                    duck = Duck(-150, random.randint(120, self.player.y - 30), self)
                     duck.vel += 2
                     self.ducks.append(duck)
             if self.spawntime > min * 2:
                 if self.spawntime - self.last_spawn > 1250:
                     print('Prosala su 2 minuta igra se ubrzava!')
                     self.last_spawn = self.spawntime
-                    duck = Duck(-150, random.randrange(120, self.player.y - 30), self)
+                    duck = Duck(-150, random.randint(120, self.player.y - 30), self)
                     duck.vel += 1.5
                     self.ducks.append(duck)
             if self.spawntime > min:  # nakon minuta na svaku 1.5 sekundu igra spawnuje patku
                 if self.spawntime - self.last_spawn > 1500:
                     print('Prosao je minut igra se ubrzava!')
                     self.last_spawn = self.spawntime
-                    duck = Duck(-150, random.randrange(120, self.player.y - 30), self)
+                    duck = Duck(-150, random.randint(120, self.player.y - 30), self)
                     duck.vel += 1
                     self.ducks.append(duck)
             else:
                 if self.spawntime - self.last_spawn > 2000:  # u pocetku igre patke se spawnuju na 2 sekunde
                     self.last_spawn = self.spawntime
-                    duck = Duck(-150, random.randrange(120, self.player.y - 30), self)
+                    duck = Duck(-150, random.randint(120, self.player.y - 30), self)
                     self.ducks.append(duck)
 
             pygame.display.update()
