@@ -12,7 +12,7 @@ class Duck:
         # Slika patke i pravougao
         self.duck = pygame.image.load('images/Duck/player1-sprite.png').convert_alpha()
         self.duck_sheet = spritesheet.SpriteSheet(self.duck)
-        self.duck_rect = self.duck.get_rect()
+        self.duck_rect = pygame.Rect((20, 50), (50, 100))
         # Promenjive za animaciju
         self.animation_list = []
         self.animation_steps = 4
